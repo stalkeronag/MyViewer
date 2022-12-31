@@ -1,0 +1,11 @@
+C:\Users\ovovo\source\repos\MyViewer\bin\Debug\MyViewer.exe.config
+C:\Users\ovovo\source\repos\MyViewer\bin\Debug\MyViewer.exe
+C:\Users\ovovo\source\repos\MyViewer\bin\Debug\MyViewer.pdb
+C:\Users\ovovo\source\repos\MyViewer\obj\Debug\MyViewer.csproj.AssemblyReference.cache
+C:\Users\ovovo\source\repos\MyViewer\obj\Debug\MyViewer.csproj.SuggestedBindingRedirects.cache
+C:\Users\ovovo\source\repos\MyViewer\obj\Debug\MyViewer.Form1.resources
+C:\Users\ovovo\source\repos\MyViewer\obj\Debug\MyViewer.Properties.Resources.resources
+C:\Users\ovovo\source\repos\MyViewer\obj\Debug\MyViewer.csproj.GenerateResource.cache
+C:\Users\ovovo\source\repos\MyViewer\obj\Debug\MyViewer.csproj.CoreCompileInputs.cache
+C:\Users\ovovo\source\repos\MyViewer\obj\Debug\MyViewer.exe
+C:\Users\ovovo\source\repos\MyViewer\obj\Debug\MyViewer.pdb
