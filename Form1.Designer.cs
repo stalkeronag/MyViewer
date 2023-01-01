@@ -46,7 +46,7 @@ namespace MyViewer
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(665, 12);
+            this.button1.Location = new System.Drawing.Point(953, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(206, 93);
             this.button1.TabIndex = 1;
@@ -56,7 +56,7 @@ namespace MyViewer
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(665, 123);
+            this.button2.Location = new System.Drawing.Point(953, 123);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(206, 77);
             this.button2.TabIndex = 2;
@@ -66,14 +66,14 @@ namespace MyViewer
             // 
             // IpEndPoint
             // 
-            this.IpEndPoint.Location = new System.Drawing.Point(665, 241);
+            this.IpEndPoint.Location = new System.Drawing.Point(953, 241);
             this.IpEndPoint.Name = "IpEndPoint";
             this.IpEndPoint.Size = new System.Drawing.Size(206, 22);
             this.IpEndPoint.TabIndex = 3;
             // 
             // Port
             // 
-            this.Port.Location = new System.Drawing.Point(665, 299);
+            this.Port.Location = new System.Drawing.Point(953, 299);
             this.Port.Name = "Port";
             this.Port.Size = new System.Drawing.Size(206, 22);
             this.Port.TabIndex = 4;
@@ -82,7 +82,7 @@ namespace MyViewer
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(724, 222);
+            this.label1.Location = new System.Drawing.Point(1012, 222);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 16);
             this.label1.TabIndex = 5;
@@ -91,7 +91,7 @@ namespace MyViewer
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(749, 280);
+            this.label2.Location = new System.Drawing.Point(1037, 280);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 16);
             this.label2.TabIndex = 6;
@@ -99,16 +99,16 @@ namespace MyViewer
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(637, 538);
+            this.pictureBox1.Size = new System.Drawing.Size(913, 700);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnMouseClick);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(665, 376);
+            this.button3.Location = new System.Drawing.Point(953, 376);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(206, 58);
             this.button3.TabIndex = 7;
@@ -118,7 +118,7 @@ namespace MyViewer
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(665, 458);
+            this.richTextBox1.Location = new System.Drawing.Point(953, 458);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(206, 116);
             this.richTextBox1.TabIndex = 8;
@@ -128,7 +128,7 @@ namespace MyViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(883, 617);
+            this.ClientSize = new System.Drawing.Size(1188, 724);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label2);

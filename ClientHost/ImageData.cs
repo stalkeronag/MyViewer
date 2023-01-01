@@ -39,7 +39,7 @@ namespace MyViewer.ClientHost
         public object Decode(byte[] bytes)
         {
             MemoryStream stream = new MemoryStream(bytes);
-            Bitmap bmp = (Bitmap)Bitmap.FromStream(stream);
+            Bitmap bmp = (Bitmap)Image.FromStream(stream);
             DecodeObject = bmp;
             return DecodeObject;
         }
@@ -50,7 +50,7 @@ namespace MyViewer.ClientHost
             Graphics graphics = Graphics.FromImage(background);
             graphics.CopyFromScreen(0, 0, 0, 0, new Size(width, height));
             MemoryStream stream = new MemoryStream();
-            background.Save(stream, ImageFormat.Bmp);
+            background.Save(stream, ImageFormat.Jpeg);
             return stream.ToArray();
         }
     }

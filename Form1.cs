@@ -32,18 +32,19 @@ namespace MyViewer
         {
             try
             {
-                IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, 0);
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IpEndPoint.Text), 0);
                 IClient client = new ClientHost.ClientHost(endPoint);
                 IConnector connector = client.Connect();
                 IReader reader = connector.GetReader();
                 //ISender sender = connector.GetSender();
                 //EventsInput inputs = new EventsInput(sender);
+                IReadableHandler handler = new Televisor(pictureBox1,(ReaderImage)reader);
                 Task.Run(() =>
                 {
                     while(true)
                     {
                        IReadable readable =  reader.Read();
-                       pictureBox1.Image = (Bitmap)readable.DecodeObject;
+                       handler.Handle(readable);
                     }
                 });
                 //while(true)
@@ -63,7 +64,7 @@ namespace MyViewer
         {
             try
             {
-                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IpEndPoint.Text), 0);
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IpEndPoint.Text), int.Parse(Port.Text));
                 IClient client = new ClientRemote.ClientRemote(endPoint);
                 IConnector connector = client.Connect();
                 /*IReader reader = connector.GetReader()*/;

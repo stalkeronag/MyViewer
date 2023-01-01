@@ -36,17 +36,12 @@ namespace MyViewer.ClientRemote
         public void SendPartitions(byte[] bytes)
         {
             MemoryStream stream = new MemoryStream(bytes);
-            MemoryStream targetStream = new MemoryStream();
-            using(var compressor = new GZipStream(targetStream,CompressionMode.Compress,true))
+            int length = stream.ToArray().Length;
+            int lengthPartitions = length / 40;
+            byte[] temp = new byte[lengthPartitions];
+            for (int i = 0; i < 40; i++)
             {
-                stream.CopyTo(compressor);
-            }
-            int length = (int)targetStream.Length;
-            int lengthPartitions = length / 10;
-            for (int i = 0; i < 10; i++)
-            {
-                byte[] temp = new byte[lengthPartitions];
-                targetStream.Read(temp, 0, temp.Length);
+                stream.Read(temp, 0, lengthPartitions);
                 client.Send(temp, temp.Length, endPoint);
             }
         }

@@ -18,7 +18,7 @@ namespace MyViewer.ClientHost
         public ReaderImage(IPEndPoint endPoint)
         {
             this.endPoint = endPoint;
-            client = new UdpClient(0);
+            client = new UdpClient(35000);
         }
 
         public IReadable Read()
@@ -35,20 +35,13 @@ namespace MyViewer.ClientHost
             try
             {
                 MemoryStream stream = new MemoryStream();
-                MemoryStream targetStream = new MemoryStream();
-                for(int i = 0; i < 10; i++)
+                for(int i = 0; i < 40; i++)
                 {
-                    
                     byte[] bytes = client.Receive(ref endPoint);
                     stream.Write(bytes, 0, bytes.Length);
                 }
-                using(var decompressor = new GZipStream(stream,CompressionMode.Decompress))
-                {
-                    decompressor.CopyTo(targetStream);
-                }
-                byte[] data = targetStream.ToArray();
+                byte[] data = stream.ToArray();
                 stream.Close();
-                targetStream.Close();
                 return data;
             }
             catch(Exception ex)
