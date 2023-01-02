@@ -31,7 +31,7 @@ namespace MyViewer.ClientHost
 
         }
 
-        public void ConverToString(byte[] data)
+        public string ConverToString(byte[] data)
         {
             throw new NotImplementedException();
         }

@@ -24,31 +24,30 @@ namespace MyViewer.ClientHost
         public IReadable Read()
         {
             ImageData image =  new ImageData();
+            if(client.Available == 0)
+            {
+                return null;
+            }
             byte[] data = GetData();
+            
             image.DecodeObject = image.Decode(data);
-            OnImageReady.Invoke(image);
+            //OnImageReady.Invoke(image);
             return image;
         }
 
         public  byte[] GetData()
         {
-            try
+           MemoryStream stream = new MemoryStream();
+           byte[] countByte =  client.Receive(ref endPoint);
+           int count = countByte[0];
+           for(int i = 0; i < count; i++)
             {
-                MemoryStream stream = new MemoryStream();
-                for(int i = 0; i < 40; i++)
-                {
-                    byte[] bytes = client.Receive(ref endPoint);
-                    stream.Write(bytes, 0, bytes.Length);
-                }
-                byte[] data = stream.ToArray();
-                stream.Close();
-                return data;
+                byte[] bytes = client.Receive(ref endPoint);
+                stream.Write(bytes, 0, bytes.Length);
             }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return new byte[512];
+            stream.Close();
+            byte[] data = stream.ToArray();
+            return data;
         }
     }
 }

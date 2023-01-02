@@ -36,10 +36,13 @@ namespace MyViewer.ClientRemote
         public void SendPartitions(byte[] bytes)
         {
             MemoryStream stream = new MemoryStream(bytes);
-            int length = stream.ToArray().Length;
-            int lengthPartitions = length / 40;
+            byte[] count = new byte[1];
+            count[0] = 20;
+            client.Send(count, count.Length, endPoint);
+            int length = bytes.Length;
+            int lengthPartitions = length / count[0];
             byte[] temp = new byte[lengthPartitions];
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < count[0]; i++)
             {
                 stream.Read(temp, 0, lengthPartitions);
                 client.Send(temp, temp.Length, endPoint);

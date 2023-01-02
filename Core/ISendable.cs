@@ -8,6 +8,6 @@ namespace MyViewer.Core
 {
     public interface ISendable:IEncoder
     {
-        void ConverToString(byte[] data);
+        string ConverToString(byte[] data);
     }
 }

@@ -10,7 +10,7 @@ namespace MyViewer.Core
     {
         public object DecodeObject { get; set; }
 
-        public void ConverToString(byte[] data)
+        public string ConverToString(byte[] data)
         {
             throw new NotImplementedException();
         }

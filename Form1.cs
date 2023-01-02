@@ -30,12 +30,12 @@ namespace MyViewer
 
         private void HostMode(object send, EventArgs e)
         {
-            try
-            {
+           
                 IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IpEndPoint.Text), 0);
                 IClient client = new ClientHost.ClientHost(endPoint);
                 IConnector connector = client.Connect();
                 IReader reader = connector.GetReader();
+                ISender senderAnswer = new SenderAnswer(endPoint, 201);
                 //ISender sender = connector.GetSender();
                 //EventsInput inputs = new EventsInput(sender);
                 IReadableHandler handler = new Televisor(pictureBox1,(ReaderImage)reader);
@@ -44,7 +44,11 @@ namespace MyViewer
                     while(true)
                     {
                        IReadable readable =  reader.Read();
-                       handler.Handle(readable);
+                        if (readable != null)
+                        {
+                            handler.Handle(readable);
+                            senderAnswer.Send(new TextData("картинка доставлена хихихиха"));
+                        }
                     }
                 });
                 //while(true)
@@ -52,25 +56,27 @@ namespace MyViewer
                 //    reader.Read();
                 //}
 
-            }
-            catch(Exception ex)
-            {
-                richTextBox1.Text = ex.ToString();
-            }
-            
         }
 
         private void RemoteMode(object senderr, EventArgs e)
         {
             try
             {
-                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IpEndPoint.Text), int.Parse(Port.Text));
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IpEndPoint.Text), 35000);
                 IClient client = new ClientRemote.ClientRemote(endPoint);
                 IConnector connector = client.Connect();
                 /*IReader reader = connector.GetReader()*/;
                 ISender sender = connector.GetSender();
+                IReader readerAnswer = new ReaderAnswer(endPoint, 305);
                 EventTimer timer = new EventTimer(sender);
-                sender.Send(new ImageData());
+                Task.Run(() =>
+                {
+                    while (true)
+                    {
+                        sender.Send(new ImageData());
+                        readerAnswer.Read();
+                    }
+                });
                 //IReadableHandler handler = new Emulator(reader);
                 //Task.Run(handler.Start);
                 
