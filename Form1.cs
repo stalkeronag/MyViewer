@@ -35,7 +35,7 @@ namespace MyViewer
                 IClient client = new ClientHost.ClientHost(endPoint);
                 IConnector connector = client.Connect();
                 IReader reader = connector.GetReader();
-                ISender senderAnswer = new SenderAnswer(endPoint, 201);
+                //ISender senderAnswer = new SenderAnswer(endPoint, 201);
                 //ISender sender = connector.GetSender();
                 //EventsInput inputs = new EventsInput(sender);
                 IReadableHandler handler = new Televisor(pictureBox1,(ReaderImage)reader);
@@ -44,11 +44,7 @@ namespace MyViewer
                     while(true)
                     {
                        IReadable readable =  reader.Read();
-                        if (readable != null)
-                        {
-                            handler.Handle(readable);
-                            senderAnswer.Send(new TextData("картинка доставлена хихихиха"));
-                        }
+                       handler.Handle(readable);
                     }
                 });
                 //while(true)
@@ -67,14 +63,13 @@ namespace MyViewer
                 IConnector connector = client.Connect();
                 /*IReader reader = connector.GetReader()*/;
                 ISender sender = connector.GetSender();
-                IReader readerAnswer = new ReaderAnswer(endPoint, 305);
                 EventTimer timer = new EventTimer(sender);
                 Task.Run(() =>
                 {
                     while (true)
                     {
                         sender.Send(new ImageData());
-                        readerAnswer.Read();
+                        //readerAnswer.Read();
                     }
                 });
                 //IReadableHandler handler = new Emulator(reader);
