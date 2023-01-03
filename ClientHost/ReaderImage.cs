@@ -28,20 +28,21 @@ namespace MyViewer.ClientHost
             ImageData image =  new ImageData();
             byte[] data = GetData();
             image.DecodeObject = image.Decode(data);
-            //OnImageReady.Invoke(image);
+            OnImageReady.Invoke(image);
             return image;
         }
 
         public  byte[] GetData()
         {
            MemoryStream stream = new MemoryStream();
-           for(int i = 0; i < 10; i++)
+
+            for (int i = 0; i < 10; i++)
             {
                 byte[] bytes = client.Receive(ref endPoint);
                 stream.Write(bytes, 0, bytes.Length);
             }
-            stream.Close();
             byte[] data = stream.ToArray();
+            stream.Close();
             byte[] mes = Encoding.UTF8.GetBytes("вам сообщение пришло хихихиха");
             client.Send(mes, mes.Length, endPoint);
             return data;

@@ -50,7 +50,6 @@ namespace MyViewer.ClientRemote
             stream.Read(last, 0, lengthPartitions);
             client.Send(last, last.Length, endPoint);
             client.Receive(ref endPoint);
-            Task.Delay(20).Wait();
         }
     }
 }

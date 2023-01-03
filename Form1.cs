@@ -35,25 +35,12 @@ namespace MyViewer
                 IClient client = new ClientHost.ClientHost(endPoint);
                 IConnector connector = client.Connect();
                 IReader reader = connector.GetReader();
-                //ISender senderAnswer = new SenderAnswer(endPoint, 201);
-                //ISender sender = connector.GetSender();
-                //EventsInput inputs = new EventsInput(sender);
+                ISender sender = connector.GetSender();
                 IReadableHandler handler = new Televisor(pictureBox1,(ReaderImage)reader);
-                Task.Run(() =>
-                {
-                    while(true)
-                    {
-                       IReadable readable =  reader.Read();
-                       handler.Handle(readable);
-                    }
-                });
-                //while(true)
-                //{
-                //    reader.Read();
-                //}
-
+                BlockIO blockIOHost = new BlockIOHost(reader, sender);
+                blockIOHost.Read();
         }
-
+        
         private void RemoteMode(object senderr, EventArgs e)
         {
             try
@@ -61,20 +48,10 @@ namespace MyViewer
                 IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IpEndPoint.Text), 35000);
                 IClient client = new ClientRemote.ClientRemote(endPoint);
                 IConnector connector = client.Connect();
-                /*IReader reader = connector.GetReader()*/;
+                IReader reader = connector.GetReader();
                 ISender sender = connector.GetSender();
-                EventTimer timer = new EventTimer(sender);
-                Task.Run(() =>
-                {
-                    while (true)
-                    {
-                        sender.Send(new ImageData());
-                        //readerAnswer.Read();
-                    }
-                });
-                //IReadableHandler handler = new Emulator(reader);
-                //Task.Run(handler.Start);
-                
+                BlockIO blockIORemote = new BlockIORemote(reader, sender);
+                blockIORemote.Send();
             }
             catch (Exception ex)
             {
