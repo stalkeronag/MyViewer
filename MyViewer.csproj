@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="ClientHost\ClientHost.cs" />
     <Compile Include="ClientHost\ConnectorHost.cs" />
+    <Compile Include="ClientHost\ControllerHost.cs" />
     <Compile Include="ClientHost\EventsInput.cs" />
     <Compile Include="ClientHost\ImageData.cs" />
     <Compile Include="ClientHost\ReaderImage.cs" />
@@ -55,12 +56,13 @@
     <Compile Include="ClientHost\Televisor.cs" />
     <Compile Include="ClientRemote\ClientRemote.cs" />
     <Compile Include="ClientRemote\ConnectorRemote.cs" />
+    <Compile Include="ClientRemote\ControllerRemote.cs" />
     <Compile Include="ClientRemote\Emulator.cs" />
     <Compile Include="ClientRemote\EventTimer.cs" />
     <Compile Include="ClientRemote\ReaderKeys.cs" />
     <Compile Include="ClientRemote\SenderImage.cs" />
-    <Compile Include="Core\BlockIO.cs" />
     <Compile Include="Core\Connector.cs" />
+    <Compile Include="Core\Controller.cs" />
     <Compile Include="Core\IClient.cs" />
     <Compile Include="Core\IConnector.cs" />
     <Compile Include="Core\IDecoder.cs" />

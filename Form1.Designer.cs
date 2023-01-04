@@ -41,6 +41,7 @@ namespace MyViewer
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button3 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,17 +119,28 @@ namespace MyViewer
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(953, 458);
+            this.richTextBox1.Location = new System.Drawing.Point(953, 583);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(206, 116);
+            this.richTextBox1.Size = new System.Drawing.Size(206, 111);
             this.richTextBox1.TabIndex = 8;
             this.richTextBox1.Text = "";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(953, 466);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(206, 70);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Start";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.StartProgram);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 724);
+            this.ClientSize = new System.Drawing.Size(1166, 724);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label2);
@@ -138,6 +150,7 @@ namespace MyViewer
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -156,6 +169,7 @@ namespace MyViewer
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button button4;
     }
 }
 

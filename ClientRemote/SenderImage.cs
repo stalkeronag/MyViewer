@@ -37,7 +37,7 @@ namespace MyViewer.ClientRemote
         {
             MemoryStream stream = new MemoryStream(bytes);
             int length = bytes.Length;
-            int countPartiotions = 5;
+            int countPartiotions = 10;
             int lengthPartitions = length / countPartiotions;
             byte[] temp = new byte[lengthPartitions];
             for (int i = 0;  i < countPartiotions - 1; i++)

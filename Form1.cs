@@ -17,6 +17,10 @@ namespace MyViewer
 {
     public partial class Form1 : Form
     {
+        public event Action StopAction;
+
+        public event Action StartAction;
+
         public Form1()
         {
             InitializeComponent();
@@ -30,15 +34,10 @@ namespace MyViewer
 
         private void HostMode(object send, EventArgs e)
         {
-           
                 IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IpEndPoint.Text), 0);
                 IClient client = new ClientHost.ClientHost(endPoint);
-                IConnector connector = client.Connect();
-                IReader reader = connector.GetReader();
-                ISender sender = connector.GetSender();
-                IReadableHandler handler = new Televisor(pictureBox1,(ReaderImage)reader);
-                BlockIO blockIOHost = new BlockIOHost(reader, sender);
-                blockIOHost.Read();
+                Controller controllerHost = new ControllerHost(client,this);
+                controllerHost.Handler = new Televisor(pictureBox1, (ReaderImage)controllerHost.Reader);
         }
         
         private void RemoteMode(object senderr, EventArgs e)
@@ -47,11 +46,7 @@ namespace MyViewer
             {
                 IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IpEndPoint.Text), 35000);
                 IClient client = new ClientRemote.ClientRemote(endPoint);
-                IConnector connector = client.Connect();
-                IReader reader = connector.GetReader();
-                ISender sender = connector.GetSender();
-                BlockIO blockIORemote = new BlockIORemote(reader, sender);
-                blockIORemote.Send();
+                Controller controllerRemote = new ControllerRemote(client,this);
             }
             catch (Exception ex)
             {
@@ -61,7 +56,7 @@ namespace MyViewer
 
         private void Disconnect(object sender, EventArgs e)
         {
-
+            StopAction.Invoke();
         }
 
         private void Draw()
@@ -71,7 +66,13 @@ namespace MyViewer
 
         private void Port_TextChanged(object sender, EventArgs e)
         {
+           
+        }
 
+       
+        private void StartProgram(object sender, EventArgs e)
+        {
+            StartAction.Invoke();
         }
     }
 }
