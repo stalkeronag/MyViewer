@@ -17,14 +17,11 @@ namespace MyViewer.ClientRemote
 {
     public class SenderImage : ISender
     {
-        private IPEndPoint endPoint;
+        private UdpUtil util;
 
-        private UdpClient client;
-
-        public SenderImage(IPEndPoint endPoint)
+        public SenderImage(UdpUtil util)
         {
-            this.endPoint = endPoint;
-            client = new UdpClient();
+            this.util = util;
         }
 
         public void Send(ISendable data)
@@ -33,8 +30,14 @@ namespace MyViewer.ClientRemote
             SendPartitions(bytes);
         }
 
+        public void Send()
+        {
+            throw new NotImplementedException();
+        }
+
         public void SendPartitions(byte[] bytes)
         {
+           
             MemoryStream stream = new MemoryStream(bytes);
             int length = bytes.Length;
             int countPartiotions = 10;
@@ -43,13 +46,14 @@ namespace MyViewer.ClientRemote
             for (int i = 0;  i < countPartiotions - 1; i++)
             {
                 stream.Read(temp, 0, lengthPartitions);
-                client.Send(temp, temp.Length, endPoint);
+                util.Send(temp);
             }
             lengthPartitions = lengthPartitions + length % countPartiotions;
             byte[] last = new byte[lengthPartitions];
             stream.Read(last, 0, lengthPartitions);
-            client.Send(last, last.Length, endPoint);
-            client.Receive(ref endPoint);
+            util.Send(last);
+            util.Receive();
+
         }
     }
 }

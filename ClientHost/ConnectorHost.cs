@@ -7,20 +7,21 @@ namespace MyViewer.ClientHost
 {
     public class ConnectorHost : Connector
     {
+        private UdpUtil udpUtil;
 
         public ConnectorHost(IPEndPoint endPoint) : base(endPoint)
         {
-
+            udpUtil = new UdpUtil(endPoint, new UdpClient(35000));
         }
 
         public override IReader GetReader()
         {
-            return new ReaderImage(endPoint);
+            return new ReaderImage(udpUtil);
         }
 
         public override ISender GetSender()
         {
-            return new SenderKeys(endPoint);
+            return new SenderKeys(udpUtil);
         }
     }
 }

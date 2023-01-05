@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MyViewer.ClientRemote
@@ -14,6 +15,7 @@ namespace MyViewer.ClientRemote
 
         public ControllerRemote(IClient client, Form1 form) : base(client,form)
         {
+            Handler = new Emulator((ReaderKeys)Reader);
         }
 
         public override void Start()
@@ -25,8 +27,10 @@ namespace MyViewer.ClientRemote
                 while (IsActive)
                 {
                     sender.Send(new ImageData());
+                    reader.Read();
                 }
             });
+           
         }
 
         public override void Stop()

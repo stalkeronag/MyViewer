@@ -21,6 +21,11 @@ namespace MyViewer
 
         public event Action StartAction;
 
+        public event Action<ISendable> OnKeyDownPress;
+
+        public event Action<ISendable> OnKeyUpPress;
+
+
         public Form1()
         {
             InitializeComponent();
@@ -38,6 +43,7 @@ namespace MyViewer
                 IClient client = new ClientHost.ClientHost(endPoint);
                 Controller controllerHost = new ControllerHost(client,this);
                 controllerHost.Handler = new Televisor(pictureBox1, (ReaderImage)controllerHost.Reader);
+            
         }
         
         private void RemoteMode(object senderr, EventArgs e)
@@ -73,6 +79,22 @@ namespace MyViewer
         private void StartProgram(object sender, EventArgs e)
         {
             StartAction.Invoke();
+            this.KeyDown += KeyDownPress;
+            this.KeyUp += KeyUpRealease;
+        }
+
+        private void KeyDownPress(object sender, KeyEventArgs e)
+        {
+                int code = e.KeyValue;
+                OnKeyDownPress.Invoke(new KeysData(code));
+        }
+
+        private void KeyUpRealease(object sender, KeyEventArgs e)
+        {
+           
+                int code = e.KeyValue;
+                code = code + 255;
+                OnKeyUpPress.Invoke(new KeysData(code));  
         }
     }
 }

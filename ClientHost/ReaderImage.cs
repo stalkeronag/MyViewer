@@ -11,20 +11,17 @@ namespace MyViewer.ClientHost
 {
     public class ReaderImage : IReader
     {
-        private UdpClient client;
-
-        private IPEndPoint endPoint;
+        private UdpUtil util;
 
         public event Action<IReadable> OnImageReady;
-
-        public ReaderImage(IPEndPoint endPoint)
+        public ReaderImage(UdpUtil util)
         {
-            this.endPoint = endPoint;
-            client = new UdpClient(35000);
+            this.util = util;
         }
 
         public IReadable Read()
         {
+           
             ImageData image =  new ImageData();
             byte[] data = GetData();
             image.DecodeObject = image.Decode(data);
@@ -34,17 +31,16 @@ namespace MyViewer.ClientHost
 
         public  byte[] GetData()
         {
-           MemoryStream stream = new MemoryStream();
-
+            MemoryStream stream = new MemoryStream();
             for (int i = 0; i < 10; i++)
             {
-                byte[] bytes = client.Receive(ref endPoint);
+                byte[] bytes = util.Receive();
                 stream.Write(bytes, 0, bytes.Length);
             }
             byte[] data = stream.ToArray();
             stream.Close();
             byte[] mes = Encoding.UTF8.GetBytes("вам сообщение пришло хихихиха");
-            client.Send(mes, mes.Length, endPoint);
+            util.Send(mes);
             return data;
         }
     }
