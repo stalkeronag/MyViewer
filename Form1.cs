@@ -33,7 +33,10 @@ namespace MyViewer
 
         private void OnMouseClick(object sender, MouseEventArgs e)
         {
-           
+            //float dx = (float)e.X / (float)pictureBox1.Width;
+            //float dy = (float)e.Y / (float)pictureBox1.Height;
+            //MouseButtons button = e.Button;
+            
         }
 
 

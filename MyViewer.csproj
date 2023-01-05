@@ -52,6 +52,7 @@
     <Compile Include="ClientHost\EventsInput.cs" />
     <Compile Include="ClientHost\ImageData.cs" />
     <Compile Include="ClientHost\KeysData.cs" />
+    <Compile Include="ClientHost\MouseData.cs" />
     <Compile Include="ClientHost\ReaderImage.cs" />
     <Compile Include="ClientHost\SenderKeys.cs" />
     <Compile Include="ClientHost\Televisor.cs" />

@@ -32,7 +32,7 @@ namespace MyViewer.ClientHost
         public void Send()
         {
            
-            byte[] count = new byte[1];
+            byte[] count = new byte[100];
             count[0] = (byte)sendables.Count;
             util.Send(count);
             if (sendables.Count > 0)
