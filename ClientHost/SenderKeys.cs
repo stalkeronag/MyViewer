@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.VisualStyles;
@@ -13,39 +14,43 @@ namespace MyViewer.ClientHost
 {
     public class SenderKeys : ISender
     {
-        private List<ISendable> sendables;
+        private ISendable sendable;
 
         private UdpUtil util;
 
         public SenderKeys(UdpUtil util)
         {
             this.util = util;
-            sendables = new List<ISendable>();
         }
 
 
         public void Send(ISendable data)
         {
-            sendables.Add(data);
+            sendable = data;
         }
 
-        public void Send()
-        {
-           
-            byte[] count = new byte[100];
-            count[0] = (byte)sendables.Count;
-            util.Send(count);
-            if (sendables.Count > 0)
+        public void Send(int id)
+        {    
+            if(sendable != null)
             {
-                byte[] encodeSendable = new byte[2];
-                foreach (var item in sendables)
+                byte[] temp = new byte[100];
+                byte[] bytes = sendable.Encode();
+                temp[0] = bytes[0];
+                temp[1] = bytes[1];
+                util.Send(temp);
+                util.Receive();
+                sendable = null;
+            } 
+            else
+            {
+                byte[] temp = new byte[10];
+                for(int i = 0; i < 10; i++)
                 {
-                    encodeSendable = item.Encode();
-                    util.Send(encodeSendable);
+                    temp[i] = 5;
                 }
-                sendables.Clear();
+                util.Send(temp);
+                util.Receive();
             }
-            util.Receive();
         }
     }
 }

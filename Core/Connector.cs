@@ -9,6 +9,7 @@ namespace MyViewer.Core
 {
     public class Connector : IConnector
     {
+
         public virtual Status status { get; set; }
 
         protected IPEndPoint endPoint;
@@ -24,6 +25,11 @@ namespace MyViewer.Core
         }
 
         public virtual ISender GetSender()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual IReader[] GetReaders()
         {
             throw new NotImplementedException();
         }

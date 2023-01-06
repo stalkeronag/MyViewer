@@ -19,28 +19,23 @@ namespace MyViewer.ClientRemote
 
         public event Action<Keys> OnKeyCodeDown;
 
-       public ReaderKeys(UdpUtil util)
+        public ReaderKeys(UdpUtil util)
         {
             this.util = util;
         }
 
         public IReadable Read()
         {
-            byte[] byteCount = util.Receive();
-            int count = byteCount[0];
-            for(int i = 0; i < count; i++)
+            byte[] bytes = util.Receive();
+            if (bytes[0] == 0)
             {
-               byte[] bytes =  util.Receive();
-                if (bytes[0] == 0)
+                OnKeyCodeDown.Invoke((Keys)bytes[1]);
+            }
+            else
+            {
+                if (bytes[0] == 1)
                 {
-                    OnKeyCodeDown.Invoke((Keys)bytes[1]);
-                }
-                else
-                {
-                    if (bytes[0] == 1)
-                    {
-                        OnKeyCodeUp.Invoke((Keys)bytes[1]);
-                    }
+                    OnKeyCodeUp.Invoke((Keys)bytes[1]);
                 }
             }
             byte[] mes = Encoding.UTF8.GetBytes("вам сообщение пришло хихихиха");

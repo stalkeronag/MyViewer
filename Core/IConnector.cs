@@ -18,5 +18,7 @@ namespace MyViewer.Core
         ISender GetSender();
 
         IReader GetReader();
+
+        IReader[] GetReaders();
     }
 }

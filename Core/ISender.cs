@@ -8,7 +8,7 @@ namespace MyViewer.Core
 {
     public interface ISender
     {
-         void Send();
+         void Send(int id);
 
          void Send(ISendable data);
     }

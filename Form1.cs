@@ -25,48 +25,28 @@ namespace MyViewer
 
         public event Action<ISendable> OnKeyUpPress;
 
+        public event Action<ISendable> OnMousePress;
 
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         private void OnMouseClick(object sender, MouseEventArgs e)
         {
-            //float dx = (float)e.X / (float)pictureBox1.Width;
-            //float dy = (float)e.Y / (float)pictureBox1.Height;
-            //MouseButtons button = e.Button;
-            
-        }
-
-
-        private void HostMode(object send, EventArgs e)
-        {
-                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IpEndPoint.Text), 0);
-                IClient client = new ClientHost.ClientHost(endPoint);
-                Controller controllerHost = new ControllerHost(client,this);
-                controllerHost.Handler = new Televisor(pictureBox1, (ReaderImage)controllerHost.Reader);
-            
+            float dx = (float)e.X / (float)pictureBox1.Width;
+            float dy = (float)e.Y / (float)pictureBox1.Height;
+            MouseButtons button = e.Button;
+            OnMousePress.Invoke(new MouseData(dx, dy, button));
         }
         
         private void RemoteMode(object senderr, EventArgs e)
         {
-            try
-            {
-                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IpEndPoint.Text), 35000);
-                IClient client = new ClientRemote.ClientRemote(endPoint);
-                Controller controllerRemote = new ControllerRemote(client,this);
-            }
-            catch (Exception ex)
-            {
-                richTextBox1.Text = ex.ToString();
-            }
+           
         }
 
-        private void Disconnect(object sender, EventArgs e)
-        {
-            StopAction.Invoke();
-        }
+
 
         private void Draw()
         {
@@ -76,14 +56,6 @@ namespace MyViewer
         private void Port_TextChanged(object sender, EventArgs e)
         {
            
-        }
-
-       
-        private void StartProgram(object sender, EventArgs e)
-        {
-            StartAction.Invoke();
-            this.KeyDown += KeyDownPress;
-            this.KeyUp += KeyUpRealease;
         }
 
         private void KeyDownPress(object sender, KeyEventArgs e)
@@ -98,6 +70,48 @@ namespace MyViewer
                 int code = e.KeyValue;
                 code = code + 255;
                 OnKeyUpPress.Invoke(new KeysData(code));  
+        }
+
+        private void HostMode(object sender, MouseEventArgs e)
+        {
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IpEndPoint.Text), 0);
+            IClient client = new ClientHost.ClientHost(endPoint);
+            Controller controllerHost = new ControllerHost(client, this);
+            controllerHost.Handler = new Televisor(pictureBox1, (ReaderImage)controllerHost.Reader);
+        }
+
+        private void RemoteMode(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IpEndPoint.Text), 35000);
+                IClient client = new ClientRemote.ClientRemote(endPoint);
+                Controller controllerRemote = new ControllerRemote(client, this);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void Stop(object sender, MouseEventArgs e)
+        {
+            StopAction.Invoke();
+        }
+
+        private void Start(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (StartAction != null)
+                    StartAction.Invoke();
+                KeyDown += KeyDownPress;
+                KeyUp += KeyUpRealease;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
