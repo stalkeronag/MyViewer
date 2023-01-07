@@ -41,6 +41,7 @@ namespace MyViewer
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,6 +67,7 @@ namespace MyViewer
             // 
             // IpEndPoint
             // 
+            this.IpEndPoint.AcceptsReturn = true;
             this.IpEndPoint.Location = new System.Drawing.Point(953, 241);
             this.IpEndPoint.Name = "IpEndPoint";
             this.IpEndPoint.Size = new System.Drawing.Size(206, 22);
@@ -73,11 +75,11 @@ namespace MyViewer
             // 
             // Port
             // 
+            this.Port.AcceptsReturn = true;
             this.Port.Location = new System.Drawing.Point(953, 299);
             this.Port.Name = "Port";
             this.Port.Size = new System.Drawing.Size(206, 22);
             this.Port.TabIndex = 4;
-            this.Port.TextChanged += new System.EventHandler(this.Port_TextChanged);
             // 
             // label1
             // 
@@ -117,7 +119,7 @@ namespace MyViewer
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(953, 508);
+            this.button4.Location = new System.Drawing.Point(953, 459);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(201, 59);
             this.button4.TabIndex = 8;
@@ -125,11 +127,20 @@ namespace MyViewer
             this.button4.UseVisualStyleBackColor = true;
             this.button4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Start);
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(953, 554);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(201, 114);
+            this.richTextBox1.TabIndex = 9;
+            this.richTextBox1.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1166, 724);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label2);
@@ -159,6 +170,7 @@ namespace MyViewer
         private System.Windows.Forms.Button button3;
         private bool Status;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 

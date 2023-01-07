@@ -53,11 +53,6 @@ namespace MyViewer
 
         }
 
-        private void Port_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void KeyDownPress(object sender, KeyEventArgs e)
         {
             int code = e.KeyValue;
@@ -78,6 +73,8 @@ namespace MyViewer
             IClient client = new ClientHost.ClientHost(endPoint);
             Controller controllerHost = new ControllerHost(client, this);
             controllerHost.Handler = new Televisor(pictureBox1, (ReaderImage)controllerHost.Reader);
+            //IpEndPoint.Enabled = false;
+            //Port.Enabled= false;
         }
 
         private void RemoteMode(object sender, MouseEventArgs e)
