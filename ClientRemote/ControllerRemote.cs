@@ -13,15 +13,9 @@ namespace MyViewer.ClientRemote
     {
         private bool IsActive = false;
 
-        private IReader readerMouse;
-
-        private IReader readerKeybd;
-
         public ControllerRemote(IClient client, Form1 form) : base(client,form)
         {
-            readerMouse = connector.GetReaders()[1];
-            readerKeybd = connector.GetReaders()[0];
-            Handler = new Emulator((ReaderKeys)readerKeybd, (ReaderMouseData)readerMouse);
+            Handler = new Emulator((ReaderKeys)Reader);
         }
 
         public override void Start()
@@ -33,8 +27,7 @@ namespace MyViewer.ClientRemote
                 while (IsActive)
                 {
                     sender.Send(new ImageData());
-                    readerKeybd.Read();
-                    readerMouse.Read();
+                    reader.Read();
                 }
             });
            

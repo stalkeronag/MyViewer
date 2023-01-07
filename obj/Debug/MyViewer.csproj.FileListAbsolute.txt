@@ -9,3 +9,14 @@ C:\Users\ovovo\source\repos\MyViewer\obj\Debug\MyViewer.csproj.GenerateResource.
 C:\Users\ovovo\source\repos\MyViewer\obj\Debug\MyViewer.csproj.CoreCompileInputs.cache
 C:\Users\ovovo\source\repos\MyViewer\obj\Debug\MyViewer.exe
 C:\Users\ovovo\source\repos\MyViewer\obj\Debug\MyViewer.pdb
+C:\Users\ovovo\Downloads\MyViewer (1)\bin\Debug\MyViewer.exe.config
+C:\Users\ovovo\Downloads\MyViewer (1)\bin\Debug\MyViewer.exe
+C:\Users\ovovo\Downloads\MyViewer (1)\bin\Debug\MyViewer.pdb
+C:\Users\ovovo\Downloads\MyViewer (1)\obj\Debug\MyViewer.csproj.AssemblyReference.cache
+C:\Users\ovovo\Downloads\MyViewer (1)\obj\Debug\MyViewer.csproj.SuggestedBindingRedirects.cache
+C:\Users\ovovo\Downloads\MyViewer (1)\obj\Debug\MyViewer.Form1.resources
+C:\Users\ovovo\Downloads\MyViewer (1)\obj\Debug\MyViewer.Properties.Resources.resources
+C:\Users\ovovo\Downloads\MyViewer (1)\obj\Debug\MyViewer.csproj.GenerateResource.cache
+C:\Users\ovovo\Downloads\MyViewer (1)\obj\Debug\MyViewer.csproj.CoreCompileInputs.cache
+C:\Users\ovovo\Downloads\MyViewer (1)\obj\Debug\MyViewer.exe
+C:\Users\ovovo\Downloads\MyViewer (1)\obj\Debug\MyViewer.pdb

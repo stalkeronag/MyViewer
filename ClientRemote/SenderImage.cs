@@ -35,11 +35,6 @@ namespace MyViewer.ClientRemote
             throw new NotImplementedException();
         }
 
-        public void Send(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public void SendPartitions(byte[] bytes)
         {
            

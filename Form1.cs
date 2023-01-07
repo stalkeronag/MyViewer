@@ -30,7 +30,7 @@ namespace MyViewer
         public Form1()
         {
             InitializeComponent();
-            
+
         }
 
         private void OnMouseClick(object sender, MouseEventArgs e)
@@ -40,36 +40,36 @@ namespace MyViewer
             MouseButtons button = e.Button;
             OnMousePress.Invoke(new MouseData(dx, dy, button));
         }
-        
+
         private void RemoteMode(object senderr, EventArgs e)
         {
-           
+
         }
 
 
 
         private void Draw()
         {
-            
+
         }
 
         private void Port_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void KeyDownPress(object sender, KeyEventArgs e)
         {
-                int code = e.KeyValue;
-                OnKeyDownPress.Invoke(new KeysData(code));
+            int code = e.KeyValue;
+            OnKeyDownPress.Invoke(new KeysData(code));
         }
 
         private void KeyUpRealease(object sender, KeyEventArgs e)
         {
-           
-                int code = e.KeyValue;
-                code = code + 255;
-                OnKeyUpPress.Invoke(new KeysData(code));  
+
+            int code = e.KeyValue;
+            code = code + 255;
+            OnKeyUpPress.Invoke(new KeysData(code));
         }
 
         private void HostMode(object sender, MouseEventArgs e)
@@ -105,6 +105,7 @@ namespace MyViewer
             {
                 if (StartAction != null)
                     StartAction.Invoke();
+                button4.Enabled = false;
                 KeyDown += KeyDownPress;
                 KeyUp += KeyUpRealease;
             }

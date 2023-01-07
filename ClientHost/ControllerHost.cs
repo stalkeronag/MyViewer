@@ -11,12 +11,10 @@ namespace MyViewer.ClientHost
     public class ControllerHost : Controller
     {
         private bool IsActive;
-
-        public ControllerHost(IClient client, Form1 form) : base(client, form)
+        public ControllerHost(IClient client, Form1 form) : base(client,form)
         {
             Form.OnKeyDownPress += sender.Send;
             Form.OnKeyUpPress += sender.Send;
-            Form.OnMousePress += sender.Send;
         }
 
         public override void Start()
@@ -28,11 +26,10 @@ namespace MyViewer.ClientHost
                 while (IsActive)
                 {
                     reader.Read();
-                    sender.Send(0);
-                    sender.Send(1);
+                    sender.Send();
                 }
             });
-
+             
         }
 
         public override void Stop()
@@ -41,7 +38,6 @@ namespace MyViewer.ClientHost
             IsActive = false;
             Form.OnKeyDownPress -= sender.Send;
             Form.OnKeyUpPress -= sender.Send;
-            Form.OnMousePress -= sender.Send;
         }
     }
 }

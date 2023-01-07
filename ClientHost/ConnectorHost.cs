@@ -9,11 +9,8 @@ namespace MyViewer.ClientHost
     {
         private UdpUtil udpUtil;
 
-        private int counter;
-
         public ConnectorHost(IPEndPoint endPoint) : base(endPoint)
         {
-            counter = 0;
             udpUtil = new UdpUtil(endPoint, new UdpClient(35000));
         }
 
@@ -24,7 +21,7 @@ namespace MyViewer.ClientHost
 
         public override ISender GetSender()
         {
-            return new SenderInputData(udpUtil);
+            return new SenderKeys(udpUtil);
         }
     }
 }

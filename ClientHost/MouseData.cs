@@ -61,7 +61,7 @@ namespace MyViewer.ClientHost
             arr[1] = dy;
             byte[] tempDx = BitConverter.GetBytes(arr[0]);
             byte[] tempDy = BitConverter.GetBytes(arr[1]);
-            byte[] bytes = new byte[9];
+            byte[] bytes = new byte[100];
             for(int i = 0; i < 8; i++)
             {
                 if(i > 3)

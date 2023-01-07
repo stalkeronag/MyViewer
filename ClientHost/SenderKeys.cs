@@ -4,7 +4,6 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.VisualStyles;
@@ -29,9 +28,9 @@ namespace MyViewer.ClientHost
             sendable = data;
         }
 
-        public void Send(int id)
-        {    
-            if(sendable != null)
+        public void Send()
+        {
+            if (sendable != null)
             {
                 byte[] temp = new byte[100];
                 byte[] bytes = sendable.Encode();
@@ -40,11 +39,11 @@ namespace MyViewer.ClientHost
                 util.Send(temp);
                 util.Receive();
                 sendable = null;
-            } 
+            }
             else
             {
                 byte[] temp = new byte[10];
-                for(int i = 0; i < 10; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     temp[i] = 5;
                 }

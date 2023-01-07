@@ -29,10 +29,5 @@ namespace MyViewer.ClientHost
         {
             return client.Receive(ref endPoint);
         }
-
-        public bool HasByte()
-        {
-            return client.Available > 0;
-        }
     }
 }

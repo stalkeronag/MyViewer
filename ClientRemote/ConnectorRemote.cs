@@ -29,10 +29,5 @@ namespace MyViewer.ClientRemote
         {
             return new SenderImage(util);
         }
-
-        public override IReader[] GetReaders()
-        {
-            return new IReader[2] { new ReaderKeys(util), new ReaderMouseData(util)};
-        }
     }
 }
