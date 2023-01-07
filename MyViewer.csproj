@@ -49,12 +49,12 @@
     <Compile Include="ClientHost\ClientHost.cs" />
     <Compile Include="ClientHost\ConnectorHost.cs" />
     <Compile Include="ClientHost\ControllerHost.cs" />
-    <Compile Include="ClientHost\EventsInput.cs" />
     <Compile Include="ClientHost\ImageData.cs" />
     <Compile Include="ClientHost\KeysData.cs" />
     <Compile Include="ClientHost\MouseData.cs" />
     <Compile Include="ClientHost\ReaderImage.cs" />
     <Compile Include="ClientHost\SenderKeys.cs" />
+    <Compile Include="ClientHost\SenderMouseData.cs" />
     <Compile Include="ClientHost\Televisor.cs" />
     <Compile Include="ClientHost\UdpUtil.cs" />
     <Compile Include="ClientRemote\ClientRemote.cs" />
@@ -63,6 +63,7 @@
     <Compile Include="ClientRemote\Emulator.cs" />
     <Compile Include="ClientRemote\EventTimer.cs" />
     <Compile Include="ClientRemote\ReaderKeys.cs" />
+    <Compile Include="ClientRemote\ReaderMouseData.cs" />
     <Compile Include="ClientRemote\SenderImage.cs" />
     <Compile Include="Core\Connector.cs" />
     <Compile Include="Core\Controller.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Core\IReader.cs" />
     <Compile Include="Core\ISendable.cs" />
     <Compile Include="Core\ISender.cs" />
+    <Compile Include="Core\IUdpClient.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

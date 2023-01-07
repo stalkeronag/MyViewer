@@ -21,6 +21,10 @@ namespace MyViewer.Core
 
         protected IReadableHandler handler;
 
+        protected List<IReader> additionReader;
+
+        protected List<ISender> additionSender;
+
         public Form1 Form
         {
             get
@@ -101,6 +105,8 @@ namespace MyViewer.Core
             Sender = Connector.GetSender();
             Form.StopAction += Stop;
             Form.StartAction += Start;
+            additionReader = new List<IReader>();
+            additionSender= new List<ISender>();
         }
 
         public virtual void Start()
@@ -112,6 +118,16 @@ namespace MyViewer.Core
         {
             Form.StopAction -= Stop;
 
+        }
+
+        public void AddReader(IReader reader)
+        {
+            additionReader.Add(reader);
+        }
+
+        public void AddSender(ISender sender)
+        {
+            additionSender.Add(sender);
         }
     }
 }

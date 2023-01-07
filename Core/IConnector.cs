@@ -13,7 +13,7 @@ namespace MyViewer.Core
     }
     public interface IConnector
     {
-        Status status{ get; set; }
+        IUdpClient GetUdpClient();
 
         ISender GetSender();
 

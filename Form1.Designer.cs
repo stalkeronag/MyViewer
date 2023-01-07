@@ -106,6 +106,7 @@ namespace MyViewer
             this.pictureBox1.Size = new System.Drawing.Size(913, 700);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnMouseClick);
             // 
             // button3
             // 

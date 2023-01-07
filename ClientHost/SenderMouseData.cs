@@ -18,32 +18,42 @@ namespace MyViewer.ClientHost
 
         public SenderMouseData(UdpUtil util)
         {
-            status = 0;
+           this.util = util;
         }
 
-        public void Send(int id)
+        public void Send()
         {
-           if(status != 0)
+           if(sendable!=null)
             {
+                byte[] infobyte = new byte[10];
+                for(int k = 0; k < infobyte.Length; k++)
+                {
+                    infobyte[k] = 1;
+                }
+                util.Send(infobyte);
                 byte[] bytes = sendable.Encode();
-                byte[] temp = new byte[5];
+                byte[] temp = new byte[10];
                 for(int i = 0; i < bytes.Length; i++)
                 {
-                    for(int j = 0; j < 5; j++)
+                    for(int j = 0; j < temp.Length; j++)
                     {
                         temp[j] = bytes[i];
                     }
                     util.Send(temp);
                 }
-                util.Receive();
-                status = 0;
+                sendable = null;
             }
+            else
+            {
+                byte[] noInfoByte = new byte[10];
+                util.Send(noInfoByte);
+            }
+            util.Receive();
         }
 
         public void Send(ISendable data)
         {
             sendable = data;
-            status = 1;
         }
 
     }

@@ -23,5 +23,10 @@ namespace MyViewer.ClientHost
         {
             return new SenderKeys(udpUtil);
         }
+
+        public override IUdpClient GetUdpClient()
+        {
+            return udpUtil;
+        }
     }
 }

@@ -15,7 +15,9 @@ namespace MyViewer.ClientRemote
 
         public ControllerRemote(IClient client, Form1 form) : base(client,form)
         {
-            Handler = new Emulator((ReaderKeys)Reader);
+            UdpUtil util = (UdpUtil)connector.GetUdpClient();
+            AddReader(new ReaderMouseData(util));
+            Handler = new Emulator((ReaderKeys)Reader, (ReaderMouseData)additionReader[0]);       
         }
 
         public override void Start()
@@ -28,6 +30,7 @@ namespace MyViewer.ClientRemote
                 {
                     sender.Send(new ImageData());
                     reader.Read();
+                    additionReader[0].Read();
                 }
             });
            

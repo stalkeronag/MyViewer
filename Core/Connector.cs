@@ -27,5 +27,10 @@ namespace MyViewer.Core
         {
             throw new NotImplementedException();
         }
+
+        public virtual IUdpClient GetUdpClient()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

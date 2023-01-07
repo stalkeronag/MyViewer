@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyViewer.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MyViewer.ClientHost
 {
-    public class UdpUtil
+    public class UdpUtil:IUdpClient
     {
         private UdpClient client;
 

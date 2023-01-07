@@ -13,11 +13,11 @@ namespace MyViewer.ClientRemote
     {
         public UdpUtil util;
 
-        public event Action<int,int,MouseKeys> OnMouseLeft;
+        public event Action<int, int> OnMouseLeft;
 
-        public event Action<int, int, MouseKeys> OnMouseRight;
+        public event Action<int, int> OnMouseRight;
 
-        public event Action<int, int, MouseKeys> OnMouseMiddle;
+        public event Action<int, int> OnMouseMiddle;
 
         public ReaderMouseData(UdpUtil util)
         {
@@ -27,36 +27,38 @@ namespace MyViewer.ClientRemote
 
         public IReadable Read()
         {
-            byte[] temp = new byte[4];
-            for (int i = 0; i < 4; i++)
+            byte[] infoByte = util.Receive();
+            if (infoByte[0] == 1)
             {
-                temp[i] = util.Receive()[0];
-            }
-            float dx = BitConverter.ToSingle(temp, 0);
-            int X = (int)(Screen.PrimaryScreen.Bounds.Width*dx);
-            for (int i = 0; i < 4; i++)
-            {
-                temp[i] = util.Receive()[0];
-            }
-            float dy = BitConverter.ToSingle(temp, 0);
-            int Y = (int)(Screen.PrimaryScreen.Bounds.Height * dx);
-            byte[] clickData = util.Receive();
-            int code = clickData[0];
-            MouseKeys key;
-            switch (code)
-            {
-                case 0:
-                    key = MouseKeys.left;
-                    OnMouseLeft.Invoke(X, Y, key);
-                    break;
-                case 1:
-                    key = MouseKeys.right;
-                    OnMouseLeft.Invoke(X, Y, key);
-                    break;
-                case 2:
-                    key = MouseKeys.middle;
-                    OnMouseMiddle.Invoke(X, Y, key);
-                    break;
+                byte[] temp = new byte[2];
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    temp[i] = util.Receive()[0];
+                }
+                ushort dx = BitConverter.ToUInt16(temp,0);
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    temp[i] = util.Receive()[0];
+                }
+                ushort dy = BitConverter.ToUInt16(temp,0);
+                byte[] clickData = util.Receive();
+                int code = clickData[0];
+                MouseKeys key;
+                switch (code)
+                {
+                    case 0:
+                        key = MouseKeys.left;
+                        OnMouseLeft.Invoke(dx, dy);
+                        break;
+                    case 1:
+                        key = MouseKeys.right;
+                        OnMouseLeft.Invoke(dx, dy);
+                        break;
+                    case 2:
+                        key = MouseKeys.middle;
+                        OnMouseMiddle.Invoke(dx, dy);
+                        break;
+                }
             }
             byte[] mes = Encoding.UTF8.GetBytes("вам сообщение пришло хихихиха");
             util.Send(mes);

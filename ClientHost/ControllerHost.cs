@@ -15,6 +15,9 @@ namespace MyViewer.ClientHost
         {
             Form.OnKeyDownPress += sender.Send;
             Form.OnKeyUpPress += sender.Send;
+            UdpUtil util = (UdpUtil)connector.GetUdpClient();
+            AddSender(new SenderMouseData(util));
+            Form.OnMousePress += additionSender[0].Send;
         }
 
         public override void Start()
@@ -27,6 +30,7 @@ namespace MyViewer.ClientHost
                 {
                     reader.Read();
                     sender.Send();
+                    additionSender[0].Send();
                 }
             });
              

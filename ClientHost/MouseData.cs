@@ -20,10 +20,11 @@ namespace MyViewer.ClientHost
         private MouseKeys key;
 
 
-        private float dx;
+        private ushort dx;
 
-        private float dy;
-        public MouseData(float dx, float dy, MouseButtons button)
+        private ushort dy;
+
+        public MouseData(ushort  dx, ushort dy, MouseButtons button)
         {
             this.dx = dx;
             this.dy = dy;
@@ -56,24 +57,17 @@ namespace MyViewer.ClientHost
 
         public byte[] Encode()
         {
-            float[] arr = new float[2];
+            ushort[] arr = new ushort[2];
             arr[0] = dx;
             arr[1] = dy;
             byte[] tempDx = BitConverter.GetBytes(arr[0]);
             byte[] tempDy = BitConverter.GetBytes(arr[1]);
-            byte[] bytes = new byte[100];
-            for(int i = 0; i < 8; i++)
-            {
-                if(i > 3)
-                {
-                    bytes[i] = tempDy[i - 4];
-                }
-                else
-                {
-                    bytes[i] = tempDx[i];
-                }
-            }
-            bytes[8] = (byte)key;
+            byte[] bytes = new byte[5];
+            bytes[0] = tempDx[0];
+            bytes[1] = tempDx[1];
+            bytes[2] = tempDy[0];
+            bytes[3] = tempDy[1];
+            bytes[4] = (byte)key;
             return bytes; 
         }
     }

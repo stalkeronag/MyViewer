@@ -17,6 +17,7 @@ namespace MyViewer.ClientRemote
         public ConnectorRemote(IPEndPoint endPoint) : base(endPoint)
         {
             util = new UdpUtil(endPoint,new UdpClient());
+
         }
 
         public override IReader GetReader()
@@ -28,6 +29,11 @@ namespace MyViewer.ClientRemote
         public override ISender GetSender()
         {
             return new SenderImage(util);
+        }
+
+        public override IUdpClient GetUdpClient()
+        {
+            return util;
         }
     }
 }
