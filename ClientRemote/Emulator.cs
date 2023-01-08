@@ -62,20 +62,23 @@ namespace MyViewer.ClientRemote
 
         public void MouseLeftClick(int dx, int dy)
         {
-            mouse_event((uint)MouseEventFlags.LEFTDOWN | (uint)MouseEventFlags.ABSOLUTE, (uint)dx, (uint)dy, 0, 0);
-            mouse_event((uint)MouseEventFlags.LEFTUP | (uint)MouseEventFlags.ABSOLUTE, (uint)dx, (uint)dy, 0, 0);
+            mouse_event((uint)(MouseEventFlags.ABSOLUTE | MouseEventFlags.MOVE), (uint)dx, (uint)dy, 0, 0);
+            mouse_event((uint)MouseEventFlags.LEFTDOWN, 0, 0, 0, 0);
+            mouse_event((uint)MouseEventFlags.LEFTUP, 0, 0, 0, 0);
         }
 
         public void MouseRightClick(int dx, int dy)
         {
-            mouse_event((uint)MouseEventFlags.RIGHTDOWN | (uint)MouseEventFlags.ABSOLUTE, (uint)dx, (uint)dy, 0, 0);
-            mouse_event((uint)MouseEventFlags.RIGHTUP | (uint)MouseEventFlags.ABSOLUTE, (uint)dx, (uint)dy, 0, 0);
+            mouse_event((uint)(MouseEventFlags.ABSOLUTE | MouseEventFlags.MOVE), (uint)dx, (uint)dy, 0, 0);
+            mouse_event((uint)MouseEventFlags.RIGHTDOWN, 0, 0, 0, 0);
+            mouse_event((uint)MouseEventFlags.RIGHTUP, 0, 0, 0, 0);
         }
 
         public void MouseMiddleClick(int dx, int dy)
         {
-            mouse_event((uint)MouseEventFlags.MIDDLEDOWN | (uint)MouseEventFlags.ABSOLUTE, (uint)dx, (uint)dy, 0, 0);
-            mouse_event((uint)MouseEventFlags.MIDDLEUP | (uint)MouseEventFlags.ABSOLUTE, (uint)dx, (uint)dy, 0, 0);
+            mouse_event((uint)(MouseEventFlags.ABSOLUTE | MouseEventFlags.MOVE), (uint)dx, (uint)dy, 0, 0);
+            mouse_event((uint)MouseEventFlags.MIDDLEDOWN, 0, 0, 0, 0);
+            mouse_event((uint)MouseEventFlags.MIDDLEUP, 0, 0, 0, 0);
         }
 
         public void Start()

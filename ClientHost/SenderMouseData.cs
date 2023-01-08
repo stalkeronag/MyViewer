@@ -25,14 +25,14 @@ namespace MyViewer.ClientHost
         {
            if(sendable!=null)
             {
-                byte[] infobyte = new byte[10];
+                byte[] infobyte = new byte[40];
                 for(int k = 0; k < infobyte.Length; k++)
                 {
                     infobyte[k] = 1;
                 }
                 util.Send(infobyte);
                 byte[] bytes = sendable.Encode();
-                byte[] temp = new byte[10];
+                byte[] temp = new byte[50];
                 for(int i = 0; i < bytes.Length; i++)
                 {
                     for(int j = 0; j < temp.Length; j++)
@@ -45,7 +45,7 @@ namespace MyViewer.ClientHost
             }
             else
             {
-                byte[] noInfoByte = new byte[10];
+                byte[] noInfoByte = new byte[50];
                 util.Send(noInfoByte);
             }
             util.Receive();
